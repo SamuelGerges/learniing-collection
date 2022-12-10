@@ -12,4 +12,5 @@ Route::get('/', function () {
 Route::controller(LearningController::class)->group(function (){
     Route::get('avg' ,'average')->name('avg');
     Route::get('max' ,'maximum')->name('max');
+    Route::get('median' ,'median')->name('median');
 });
