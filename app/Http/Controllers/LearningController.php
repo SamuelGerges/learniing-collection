@@ -90,6 +90,53 @@ class LearningController extends Controller
         });
         dd($res);
 
+    }
+
+    public function collapsee()
+    {
+
+        // TODO :: collapse return values into a single array
+
+//        $data = [
+//            [1, 2, 3, 4],
+//            [5, 6, 7, 8],
+//            [9, 10, 11, 12],
+//        ];
+//        dd(collect($data)->collapse());
+
+        $data = [
+            [0 => 'samuel'],
+            [1 => 'gerges'],
+            [2 => 'mina'],
+        ];
+        dd(collect($data)->collapse()->first());
+//        dd(collect($data)->collapse()->last());
+//        dd(collect($data)->collapse());
+
+
+    }
+
+    public function chunks()
+    {
+
+        // TODO :: chunk(size) return collection into a other collection (size) => number of elements in collection
+
+        $data = [
+            1, 2, 3, 4, 5, 6, 7, 8
+
+
+        ];
+//        dd(collect($data)->chunk(4)->first());
+//        dd(collect($data)->chunk(4)->last());
+
+        $data = [
+            [0 => 'samuel'],
+            [1 => 'gerges'],
+            [2 => 'mina'],
+            [3 => 'family'],
+        ];
+        dd(collect($data)->chunk(2));
+
 
     }
 }

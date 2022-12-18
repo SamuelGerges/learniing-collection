@@ -14,6 +14,8 @@ Route::controller(LearningController::class)->group(function (){
     Route::get('max' ,'maximum')->name('max');
     Route::get('median' ,'median')->name('median');
     Route::get('min' ,'minimum')->name('minimum');
+    Route::get('collapse' ,'collapsee')->name('collapse');
+    Route::get('chunk' ,'chunks')->name('chunk');
 });
 
 Auth::routes();
