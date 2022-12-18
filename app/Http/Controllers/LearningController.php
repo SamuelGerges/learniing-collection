@@ -69,4 +69,27 @@ class LearningController extends Controller
         dd($res);
 
     }
+
+    public function minimum()
+    {
+//        $data = [200, 300, 400, 5000];
+//        dd(collect($data)->min());
+
+        $data = [
+            ['price' => 18000, 'tax' => 5000, 'active' => false],
+            ['price' => 25000, 'tax' => 4000, 'active' => false],
+            ['price' => 30000, 'tax' => 6000, 'active' => true],
+            ['price' => 40000, 'tax' => 500, 'active' => true],
+        ];
+
+        $res = collect($data)->min(function ($value) {
+            if (!$value['active']) {
+                return null;
+            }
+            return $value['price'] + $value['tax'];
+        });
+        dd($res);
+
+
+    }
 }
