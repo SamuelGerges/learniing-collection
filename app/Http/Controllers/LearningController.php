@@ -161,4 +161,24 @@ class LearningController extends Controller
         dd($data);
 
     }
+
+    public function concat()
+    {
+        // TODO:: Push all of the given items onto the collection.
+        $data = collect('one element');
+//        $result =  $data->concat(['two element']);
+        $result =  $data->concat(['zero' =>'two element']);  // key that is ignore   result ['one element','two element']
+        dd($result);
+    }
+
+    public function contains()
+    {
+        // TODO:: contains  Determine if an item exists in the collection.   and return true or false
+        // is chack is the variable is contain this value ? true : false
+
+//        $data = collect([1])->contains(1);     // return  true
+        $data = collect([1,2,4,5])->contains(8);   // retun false
+        $data = collect([1,2,4,5])->containsStrict(2);   // retun false
+        dd($data);
+    }
 }

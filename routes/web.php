@@ -17,6 +17,8 @@ Route::controller(LearningController::class)->group(function (){
     Route::get('collapse' ,'collapsee')->name('collapse');
     Route::get('chunk' ,'chunks')->name('chunk');
     Route::get('combine' ,'combine')->name('combine');
+    Route::get('concat' ,'concat')->name('concat');
+    Route::get('contains' ,'contains')->name('contains');
 });
 
 Auth::routes();
