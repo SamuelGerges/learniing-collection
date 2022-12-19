@@ -16,6 +16,7 @@ Route::controller(LearningController::class)->group(function (){
     Route::get('min' ,'minimum')->name('minimum');
     Route::get('collapse' ,'collapsee')->name('collapse');
     Route::get('chunk' ,'chunks')->name('chunk');
+    Route::get('combine' ,'combine')->name('combine');
 });
 
 Auth::routes();

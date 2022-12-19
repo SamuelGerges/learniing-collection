@@ -139,4 +139,26 @@ class LearningController extends Controller
 
 
     }
+
+    public function combine()
+    {
+        // TODO:: combine => create a new collection by using this collection for keys and another for its values.
+
+        $key = collect(['fruits', 'drinks']);
+//           $data = $key->combine(['fruits', 'meats', 'eggs']);
+        $data = $key->combine([
+            [
+                0 => 'apples',
+                1 => 'banana',
+                2 => 'oranges'
+            ],
+            [
+                0 => 'pespaa',
+                1 => 'cocala',
+                2 => 'jejejej'
+            ]
+        ]);
+        dd($data);
+
+    }
 }
