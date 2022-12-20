@@ -167,7 +167,7 @@ class LearningController extends Controller
         // TODO:: Push all of the given items onto the collection.
         $data = collect('one element');
 //        $result =  $data->concat(['two element']);
-        $result =  $data->concat(['zero' =>'two element']);  // key that is ignore   result ['one element','two element']
+        $result = $data->concat(['zero' => 'two element']);  // key that is ignore   result ['one element','two element']
         dd($result);
     }
 
@@ -177,8 +177,27 @@ class LearningController extends Controller
         // is chack is the variable is contain this value ? true : false
 
 //        $data = collect([1])->contains(1);     // return  true
-        $data = collect([1,2,4,5])->contains(8);   // retun false
-        $data = collect([1,2,4,5])->containsStrict(2);   // retun false
+        $data = collect([1, 2, 4, 5])->contains(8);   // retun false
+        $data = collect([1, 2, 4, 5])->containsStrict(2);   // retun false
         dd($data);
     }
+
+    public function countCollection()
+    {
+        $data = [1,
+            2 => ['a', 'b', 'c'],
+            4, 5, 6, 5
+        ];
+        dd(($data));
+        dd(collect($data[2])->count());
+    }
+
+    public function diff()
+    {
+        // TODO:: Get the items in the collection that are not existed in the given items.
+        $collection = collect([1,5,3]);
+        dd($collection->diff([2,4,6]));
+    }
+
+
 }

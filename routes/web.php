@@ -19,6 +19,8 @@ Route::controller(LearningController::class)->group(function (){
     Route::get('combine' ,'combine')->name('combine');
     Route::get('concat' ,'concat')->name('concat');
     Route::get('contains' ,'contains')->name('contains');
+    Route::get('count' ,'countCollection')->name('count');
+    Route::get('diff' ,'diff')->name('diff');
 });
 
 Auth::routes();
