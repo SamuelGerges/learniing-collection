@@ -255,12 +255,29 @@ class LearningController extends Controller
 //        $resu = collect([1, 2, 4, 5])->map(function ($item, $key) {
 //            return ($item * $key);
 //        });
-        $resu = collect(['name' => 'samuek','age' => '22'])
-        ->map(function ($item , $key){
-            return ([$key.$item] );
-        });
+        $resu = collect(['name' => 'samuek', 'age' => '22'])
+            ->map(function ($item, $key) {
+                return ([$key . $item]);
+            });
         dd($resu);
     }
+
+    public function mapWithKeys()
+    {
+        $resu = collect(['firstName' => 'samuek', 'secondName' => 'gerges'])
+            ->mapWithKeys(function ($item, $key) {
+//                if ($key == 'name')
+//                    return [];
+//              return ([$key => $item]);
+                return ([
+                    $key => $item,
+                    $key . '_upper' => strtoupper($item)
+                ]);
+                return ([$item => $key]);
+            });
+        dd($resu);
+    }
+
 
 
 }

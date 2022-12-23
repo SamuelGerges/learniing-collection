@@ -27,6 +27,8 @@ Route::controller(LearningController::class)->group(function (){
     Route::get('cross-join' ,'cross_Join')->name('cross-join');
     Route::get('tab','tab')->name('tab');
     Route::get('map','map')->name('map');
+    Route::get('map-keys','mapWithKeys')->name('map-keys');
+//    Route::get('map-into','mapInto')->name('map-into');
 });
 
 Auth::routes();
