@@ -218,12 +218,13 @@ class LearningController extends Controller
         $collection = collect([1 => 'aa', 2 => 'ab', 3 => 'ac']);
         dd($collection->diffKeys([2 => 'ab', 5 => 'aa', 4 => 'ad']));   // retun [1 => 'aa' , 3 => 'ac']
     }
+
     public function diffUsing()
     {
         // TODO:: Get the items in the collection that are not present in the given items, using the callback.
-        $collection = collect([10 , 25 , 50 ]);
-        return  ($collection->diffUsing([.1,.25],function ($a , $b){
-            dump ($b * 10);
+        $collection = collect([10, 25, 50]);
+        return ($collection->diffUsing([.1, .25], function ($a, $b) {
+            dump($b * 10);
         }));
     }
 
@@ -232,6 +233,33 @@ class LearningController extends Controller
         // TODO:: Cross join with the given lists, returning all possible permutations.
         $collection = collect([1, 2, 3]);
         dd($collection->crossJoin(['samuel', 'mina', 'gena']));
+    }
+
+
+    public function tab()
+    {
+        // TODO :: reverse item order
+        $result = collect([1, 4, 3])->reverse()
+            ->tap(function ($collection) {
+                $collection->reverse()
+                    ->each(function ($va) {
+                        dump($va);
+                    });
+            });
+        dd($result);
+    }
+
+
+    public function map()
+    {
+//        $resu = collect([1, 2, 4, 5])->map(function ($item, $key) {
+//            return ($item * $key);
+//        });
+        $resu = collect(['name' => 'samuek','age' => '22'])
+        ->map(function ($item , $key){
+            return ([$key.$item] );
+        });
+        dd($resu);
     }
 
 
