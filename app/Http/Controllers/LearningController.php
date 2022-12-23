@@ -120,6 +120,7 @@ class LearningController extends Controller
     {
 
         // TODO :: chunk(size) return collection into a other collection (size) => number of elements in collection
+        // TODO :: Chunk the collection into chunks of the given size.
 
         $data = [
             1, 2, 3, 4, 5, 6, 7, 8
@@ -167,7 +168,7 @@ class LearningController extends Controller
         // TODO:: Push all of the given items onto the collection.
         $data = collect('one element');
 //        $result =  $data->concat(['two element']);
-        $result = $data->concat(['zero' => 'two element']);  // key that is ignore   result ['one element','two element']
+        $result = $data->concat(['two element', 'three element', 'four element']);  // key that is ignore   result ['one element','two element']
         dd($result);
     }
 
@@ -185,7 +186,7 @@ class LearningController extends Controller
     public function countCollection()
     {
         $data = [1,
-            2 => ['a', 'b', 'c'],
+            2 => ['a', 'b', 'c', 'd'],
             4, 5, 6, 5
         ];
         dd(($data));
@@ -195,8 +196,42 @@ class LearningController extends Controller
     public function diff()
     {
         // TODO:: Get the items in the collection that are not existed in the given items.
-        $collection = collect([1,5,3]);
-        dd($collection->diff([2,4,6]));
+//        $collection = collect([1, 2, 3]);
+//        dd($collection->diff([2, 4, 6]));   // return  [1,3] in $collection to existed 2 in other collection
+        $collection = collect([1 => 'aa', 2 => 'ab', 3 => 'ac']);
+        dd($collection->diff([2 => 'ab', 4 => 'aa', 6]));   // retun [1 => 'aa' , 3 => 'ac']
+    }
+
+    public function diffAssoc()
+    {
+        // TODO:: Get the items in the collection whose keys and values are not present in the given items.
+        // TODO :: keys == keys && values == values
+        // TODO :: key => value  == key => value
+        $collection = collect([1 => 'aa', 2 => 'ab', 3 => 'ac']);
+        dd($collection->diffAssoc([2 => 'ab', 4 => 'aa', 6 => 'ad']));   // retun [3 => 'ac']
+    }
+
+    public function diffKeys()
+    {
+        // TODO:: Get the items in the collection whose keys are not present in the given items.
+        // TODO :: keys === keys     ignore values
+        $collection = collect([1 => 'aa', 2 => 'ab', 3 => 'ac']);
+        dd($collection->diffKeys([2 => 'ab', 5 => 'aa', 4 => 'ad']));   // retun [1 => 'aa' , 3 => 'ac']
+    }
+    public function diffUsing()
+    {
+        // TODO:: Get the items in the collection that are not present in the given items, using the callback.
+        $collection = collect([10 , 25 , 50 ]);
+        return  ($collection->diffUsing([.1,.25],function ($a , $b){
+            dump ($b * 10);
+        }));
+    }
+
+    public function cross_Join()
+    {
+        // TODO:: Cross join with the given lists, returning all possible permutations.
+        $collection = collect([1, 2, 3]);
+        dd($collection->crossJoin(['samuel', 'mina', 'gena']));
     }
 
 

@@ -21,6 +21,10 @@ Route::controller(LearningController::class)->group(function (){
     Route::get('contains' ,'contains')->name('contains');
     Route::get('count' ,'countCollection')->name('count');
     Route::get('diff' ,'diff')->name('diff');
+    Route::get('diff-assoc' ,'diffAssoc')->name('diff-assoc');
+    Route::get('diff-keys' ,'diffkeys')->name('diff-keys');
+    Route::get('diff-using' ,'diffUsing')->name('diff-using');
+    Route::get('cross-join' ,'cross_Join')->name('cross-join');
 });
 
 Auth::routes();
