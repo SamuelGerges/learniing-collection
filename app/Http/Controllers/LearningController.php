@@ -526,7 +526,6 @@ class LearningController extends Controller
         dd($res);
     }
 
-
     public function pluck()
     {
 //        $res = collect([
@@ -537,16 +536,61 @@ class LearningController extends Controller
 //        ])->pluck('product','quantity');
 
         $res = collect([
-            ['product' => 'apples', 'price' => 33,'quantity' => 5],
-            ['product' => 'oranges', 'price' => 44,'quantity' => 6],
-            ['product' => 'bananas', 'price' => 33,'quantity' => 7],
-            ['product' => 'lemons', 'price' => 66,'quantity' => 8],
-        ])->map(function ($item){
-            return collect($item)->only(['product','quantity'])->all();
+            ['product' => 'apples', 'price' => 33, 'quantity' => 5],
+            ['product' => 'oranges', 'price' => 44, 'quantity' => 6],
+            ['product' => 'bananas', 'price' => 33, 'quantity' => 7],
+            ['product' => 'lemons', 'price' => 66, 'quantity' => 8],
+        ])->map(function ($item) {
+            return collect($item)->only(['product', 'quantity'])->all();
         });
 
         dd($res);
     }
+
+
+    public function firstWhere()
+    {
+        $res = collect([
+            ['product' => 'apples', 'price' => null, 'quantity' => 5],
+            ['product' => 'oranges', 'price' => null, 'quantity' => 6],
+            ['product' => 'bananas', 'price' => 50, 'quantity' => 7],
+            ['product' => 'lemons', 'price' => 66, 'quantity' => 8],
+        ])->firstWhere('price', null);
+
+        dd($res);
+    }
+
+    public function zip()
+    {
+        $res = collect([1, 2, 3, 4, 5])->zip([11, 22, 33, 44], [111, 222, 333, 444, 555]);
+
+        dd($res);
+    }
+
+    public function sort()
+    {
+        $res = collect(['1_0', '2_00', '30', '4_0', '_5'])->sort(function ($a, $b) {
+            $code = str_replace('_', '', $a);
+            return $code;
+        });
+        dd($res);
+    }
+
+    public function sortBy()
+    {
+        $res = collect([
+            ['product' => 'apples', 'price' => 100, 'quantity' => 5, 'code' => 'A30'],
+            ['product' => 'oranges', 'price' => 20, 'quantity' => 10, 'code' => 'A-20'],
+            ['product' => 'bananas', 'price' => 50, 'quantity' => 17, 'code' => 'A-50'],
+            ['product' => 'lemons', 'price' => 66, 'quantity' => 8, 'code' => 'A40'],
+        ])->sortBy(function ($item){
+            return str_replace('-','',$item['code']);
+        });
+
+        dd($res);
+    }
+
+
 }
 
 

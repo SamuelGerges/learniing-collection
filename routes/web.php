@@ -43,6 +43,10 @@ Route::controller(LearningController::class)->group(function () {
     Route::get('wrap','wrap')->name('wrap');
     Route::get('filter','filter')->name('filter');
     Route::get('pluck','pluck')->name('pluck');
+    Route::get('first-where','firstWhere')->name('first-where');
+    Route::get('zip','zip')->name('zip');
+    Route::get('sort','sort')->name('sort');
+    Route::get('sortBy','sortBy')->name('sortBy');
 });
 
 Auth::routes();
