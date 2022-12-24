@@ -278,6 +278,87 @@ class LearningController extends Controller
         dd($resu);
     }
 
+    public function mapInto()
+    {
+        $res = collect([1, 2, 3, 4])->mapInto(Converter::class)
+            ->map(function ($item) {
+                return $item->toCentimetres();
+            });
+        dd($res);
+    }
+
+    public function mapSpread()
+    {
+        // TODO :: mapSpread Run a map over each nested chunk of items
+//        $collection = collect([1, 2, 3, 4, 5, 6, 7, 8, 9])->chunk(2)
+//            ->mapSpread(function ($a, $b) {
+//                return $a * $b;
+//            });
+//        $collection = collect([1, 2, 3, 4, 5, 6, 7, 8, 9])->chunk(2)
+//            ->mapSpread(function ($a, $b) {
+//                return $a + $b;
+//            });
+//        $collection = collect([1, 2, 3, 4, 5, 6, 7, 8, 9])->chunk(3)
+//            ->mapSpread(function ($a, $b,$c) {
+//                return ($a * $b -$c);
+//            });
+        $collection = collect([1, 2, 3, 4, 5, 6, 7, 8, 9])->chunk(3)
+            ->mapSpread(function ($a, $b, $c) {
+                return [$a * $b => $c];
+            });
+        dd($collection);
+    }
+
+    public function mapToDictionary()
+    {
+        // TODO :: mapToDictionary Run a dictionary map over the items.
+        //The callback should return an associative array with a single key/value pair.
+        $collection = collect([
+            ['product' => 'apples', 'price' => 33],
+            ['product' => 'apples', 'price' => 44],
+            ['product' => 'bananas', 'price' => 55],
+            ['product' => 'bananas', 'price' => 66],
+        ]);
+
+        dd($collection->mapToDictionary(function ($item) {
+            return [$item['price'] => $item['price']];
+        }));
+    }
+
+    public function mapToGroups()
+    {
+        // TODO :: mapGroups Run a grouping map over the items.
+        //The callback should return an associative array with a single key/value pair
+        $collection = collect([
+            ['product' => 'apples', 'price' => 33],
+            ['product' => 'apples', 'price' => 44],
+            ['product' => 'bananas', 'price' => 55],
+            ['product' => 'bananas', 'price' => 66],
+        ]);
+
+        dd($collection->mapToGroups(function ($item) {
+            return [$item['product'] => $item['price']];
+        })->map(function ($item) {
+            return $item->max();
+        })
+        );
+    }
 
 
+}
+
+
+class Converter
+{
+    private $amount;
+
+    public function __construct($amount)
+    {
+        $this->amount = $amount;
+    }
+
+    public function toCentimetres()
+    {
+        return $this->amount * 100;
+    }
 }

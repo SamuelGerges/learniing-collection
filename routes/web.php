@@ -28,7 +28,10 @@ Route::controller(LearningController::class)->group(function (){
     Route::get('tab','tab')->name('tab');
     Route::get('map','map')->name('map');
     Route::get('map-keys','mapWithKeys')->name('map-keys');
-//    Route::get('map-into','mapInto')->name('map-into');
+    Route::get('map-into','mapInto')->name('map-into');
+    Route::get('map-spread','mapSpread')->name('map-spread');
+    Route::get('map-to-dictionary','mapToDictionary')->name('map-to-dictionary');
+    Route::get('map-to-groups','mapToGroups')->name('map-to-groups');
 });
 
 Auth::routes();
