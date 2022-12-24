@@ -344,6 +344,153 @@ class LearningController extends Controller
         );
     }
 
+    public function where()
+    {
+        // TODO :: where Filter items by the given key value pair.
+//        $collection = collect([
+//            ['product' => 'apples', 'price' => 33],
+//            ['product' => 'apples', 'price' => 44],
+//            ['product' => 'bananas', 'price' => 33],
+//            ['product' => 'bananas', 'price' => 66],
+//        ])->where('price', 33);
+
+        $collection = collect([
+            ['product' => 'apples', 'price' => 33],
+            ['product' => 'apples', 'price' => 44],
+            ['product' => 'bananas', 'price' => 33],
+            ['product' => 'bananas', 'price' => 66],
+        ])->where('price', '>', 33);
+        dd($collection);
+
+    }
+
+    public function whereStrict()
+    {
+        // TODO :: whereStrict Filter items by the given key value pair using strict comparison.
+//        $collection = collect([
+//            ['product' => 'apples', 'price' => 33],
+//            ['product' => 'apples', 'price' => 44],
+//            ['product' => 'bananas', 'price' => 33],
+//            ['product' => 'bananas', 'price' => 66],
+//        ])->whereStrict('price', 33);
+        $collection = collect([
+            ['product' => 'apples', 'price' => 33],
+            ['product' => 'apples', 'price' => 44],
+            ['product' => 'bananas', 'price' => 33],
+            ['product' => 'bananas', 'price' => 66],
+        ])->where('price', '<>', 66);
+        dd($collection);
+
+    }
+
+    public function whereInStrict()
+    {
+        // TODO :: whereInStrict Filter items by the given key value pair using strict comparison.
+//
+//        $collection = collect([
+//            ['product' => 'apples', 'price' => 33],
+//            ['product' => 'apples', 'price' => 44],
+//            ['product' => 'bananas', 'price' => 40],
+//            ['product' => 'bananas', 'price' => 66],
+//        ])->whereInStrict('price', [33,40]);           //
+
+        $collection = collect([
+            ['product' => 'apples', 'price' => 33],
+            ['product' => 'apples', 'price' => 44],
+            ['product' => 'bananas', 'price' => 40],
+            ['product' => 'bananas', 'price' => 66],
+        ])->whereInStrict('price', ['33', '40']);             //  return empty array because the condition is not true
+        dd($collection);
+    }
+    public function whereNotInStrict()
+    {
+        // TODO :: whereInStrict Filter items by the given key value pair using strict comparison.
+
+//        $collection = collect([
+//            ['product' => 'apples', 'price' => 33],
+//            ['product' => 'apples', 'price' => 44],
+//            ['product' => 'bananas', 'price' => 40],
+//            ['product' => 'bananas', 'price' => 66],
+//        ])->whereNotInStrict('price', [33,40]);           //
+
+        $collection = collect([
+            ['product' => 'apples', 'price' => 33],
+            ['product' => 'apples', 'price' => 44],
+            ['product' => 'bananas', 'price' => 40],
+            ['product' => 'bananas', 'price' => 66],
+        ])->whereNotInStrict('price', ['33', '40']);             //  return empty array because the condition is not true
+
+        dd($collection);
+    }
+
+    public function whereIn()
+    {
+        // TODO :: whereIn Filter items by the given key value pair.
+
+//        $collection = collect([
+//            ['product' => 'apples', 'price' => 33],
+//            ['product' => 'apples', 'price' => 44],
+//            ['product' => 'bananas', 'price' => 40],
+//            ['product' => 'bananas', 'price' => 66],
+//        ])->whereIn('price', [33, 40]);
+
+        $collection = collect([
+            ['product' => 'apples', 'price' => 33],
+            ['product' => 'apples', 'price' => 44],
+            ['product' => 'bananas', 'price' => 40],
+            ['product' => 'bananas', 'price' => 66],
+        ])->whereIn('price', ['33', '40']);
+        dd($collection);
+    }
+
+    public function whereNotIn()
+    {
+        // TODO :: whereNotIn  Filter items by the given key value pair.
+
+        $collection = collect([
+            ['product' => 'apples', 'price' => 33],
+            ['product' => 'apples', 'price' => 44],
+            ['product' => 'bananas', 'price' => 40],
+            ['product' => 'bananas', 'price' => 66],
+        ])->whereNotIn('price', [33, 40]);
+
+        $collection = collect([
+            ['product' => 'apples', 'price' => 33],
+            ['product' => 'apples', 'price' => 44],
+            ['product' => 'bananas', 'price' => 40],
+            ['product' => 'bananas', 'price' => 66],
+        ])->whereNotIn('price', ['33', '40']);
+        dd($collection);
+    }
+
+    public function whereBetween()
+    {
+        // TODO :: whereBetween Filter items such that the value of the given key is between the given values
+
+        $collection = collect([
+            ['product' => 'apples', 'price' => 33],
+            ['product' => 'apples', 'price' => 44],
+            ['product' => 'bananas', 'price' => 40],
+            ['product' => 'bananas', 'price' => 66],
+        ])->whereBetween('price', [33, 44]);
+        dd($collection);
+
+    }
+
+    public function whereNotBetween()
+    {
+        // TODO :: whereNotBetween Filter items such that the value of the given key is not between the given values.
+
+        $collection = collect([
+            ['product' => 'apples', 'price' => 33],
+            ['product' => 'apples', 'price' => 44],
+            ['product' => 'bananas', 'price' => 40],
+            ['product' => 'bananas', 'price' => 66],
+        ])->whereNotBetween('price', [33, 44]);
+        dd($collection);
+
+    }
+
 
 }
 
