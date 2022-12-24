@@ -40,6 +40,9 @@ Route::controller(LearningController::class)->group(function () {
     Route::get('where-not-in', 'whereNotIn')->name('where-not-in');
     Route::get('where-between', 'whereBetween')->name('where-between');
     Route::get('where-not-between', 'whereNotBetween')->name('where-not-between');
+    Route::get('wrap','wrap')->name('wrap');
+    Route::get('filter','filter')->name('filter');
+    Route::get('pluck','pluck')->name('pluck');
 });
 
 Auth::routes();

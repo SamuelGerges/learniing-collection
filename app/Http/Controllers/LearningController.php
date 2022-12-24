@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class LearningController extends Controller
 {
@@ -402,6 +404,7 @@ class LearningController extends Controller
         ])->whereInStrict('price', ['33', '40']);             //  return empty array because the condition is not true
         dd($collection);
     }
+
     public function whereNotInStrict()
     {
         // TODO :: whereInStrict Filter items by the given key value pair using strict comparison.
@@ -492,6 +495,58 @@ class LearningController extends Controller
     }
 
 
+    public function wrap()
+    {
+//        dd($this->everyThree([1, 2, 3, 4], [5, 6, 7, 8]));
+
+        dd($this->mergeArray([1, 2, 3, 4], [5, 6, 7, 8]));
+    }
+
+    public function everyThree(...$collection)
+    {
+        return collect($collection)->flatMap(function ($item) {
+            return Collection::wrap($item)->nth(3);
+        });
+    }
+
+    public function mergeArray(...$collection)
+    {
+        return collect($collection)->flatMap(function ($item) {
+            return Arr::wrap(Collection::unwrap($item));
+
+        });
+    }
+
+
+    public function filter()
+    {
+        $res = collect([0, 1, 2, 3, 4, 5, 6])->filter(function ($item) {
+            return ($item % 2 !== 0);
+        });
+        dd($res);
+    }
+
+
+    public function pluck()
+    {
+//        $res = collect([
+//            ['product' => 'apples', 'price' => 33,'quantity' => 5],
+//            ['product' => 'oranges', 'price' => 44,'quantity' => 6],
+//            ['product' => 'bananas', 'price' => 33,'quantity' => 7],
+//            ['product' => 'lemons', 'price' => 66,'quantity' => 8],
+//        ])->pluck('product','quantity');
+
+        $res = collect([
+            ['product' => 'apples', 'price' => 33,'quantity' => 5],
+            ['product' => 'oranges', 'price' => 44,'quantity' => 6],
+            ['product' => 'bananas', 'price' => 33,'quantity' => 7],
+            ['product' => 'lemons', 'price' => 66,'quantity' => 8],
+        ])->map(function ($item){
+            return collect($item)->only(['product','quantity'])->all();
+        });
+
+        dd($res);
+    }
 }
 
 
