@@ -53,6 +53,13 @@ Route::controller(LearningController::class)->group(function () {
     Route::get('isEmpty','isEmpty')->name('isEmpty');
     Route::get('isNotEmpty','isNotEmpty')->name('isNotEmpty');
     Route::get('reverse','reverse')->name('reverse');
+    Route::get('take','take')->name('take');
+    Route::get('nth','nth')->name('nth');
+    Route::get('only','only')->name('only');
+    Route::get('each','each')->name('each');
+    Route::get('times','times')->name('times');
+    Route::get('toArray','toArray')->name('toArray');
+    Route::get('toJson','toJson')->name('toJson');
 });
 
 Auth::routes();

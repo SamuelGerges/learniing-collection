@@ -657,10 +657,88 @@ class LearningController extends Controller
 
     public function reverse()
     {
-        $res = collect([1,2,3,4,5])->reverse()->values();
+        $res = collect([1, 2, 3, 4, 5])->reverse()->values();
         dd($res);
     }
 
+    public function take()
+    {
+        // TODO :: take() =>> Take the first or last {$limit} items.
+        $res = collect([
+            ['product' => 'apples', 'price' => 100, 'quantity' => 5, 'code' => 'A30'],
+            ['product' => 'oranges', 'price' => 20, 'quantity' => 10, 'code' => 'A-20'],
+            ['product' => 'bananas', 'price' => 50, 'quantity' => 17, 'code' => 'A-50'],
+            ['product' => 'lemons', 'price' => 66, 'quantity' => 8, 'code' => 'A40'],
+        ])->reverse()->take(2);
+        dd($res);
+    }
+
+    public function nth()
+    {
+        // TODO :: nth() =>> Create a new collection consisting of every n-th element.
+        // nth(steps , ofset => start)
+        $res = collect([
+            ['product' => 'apples', 'price' => 100, 'quantity' => 5, 'code' => 'A30'],
+            ['product' => 'oranges', 'price' => 20, 'quantity' => 10, 'code' => 'A-20'],
+            ['product' => 'bananas', 'price' => 50, 'quantity' => 17, 'code' => 'A-50'],
+            ['product' => 'lemons', 'price' => 66, 'quantity' => 8, 'code' => 'A40'],
+        ])->nth(2, '1');
+        dd($res);
+    }
+
+    public function only()
+    {
+        // TODO :: only() =>> Get the items with the specified keys
+        $res = collect([
+            ['product' => 'apples', 'price' => 100, 'quantity' => 5, 'code' => 'A30'],
+            ['product' => 'oranges', 'price' => 20, 'quantity' => 10, 'code' => 'A-20'],
+            ['product' => 'bananas', 'price' => 50, 'quantity' => 17, 'code' => 'A-50'],
+            ['product' => 'lemons', 'price' => 66, 'quantity' => 8, 'code' => 'A40'],
+        ])->only(null);
+        dd($res);
+    }
+
+    public function each()
+    {
+        // TODO :: each() =>> Execute a callback over each item.
+        $res = collect([
+            ['apples', 100, 5],
+            ['oranges', 20, 10],
+            ['bananas', 50, 17],
+            ['lemons', 66, 17],
+        ])->eachSpread(function ($prodcut, $price, $qun) {
+            dump('the quantity from ' . $prodcut . ' is ' . $qun . 'kg');
+        });
+        dd($res);
+    }
+
+    public function times()
+    {
+        // TODO :: times() =>> Create a new collection by invoking the callback a given amount of times..
+
+        $res = Collection::times(2, function ($item) {
+            return 10;
+        });
+        dd($res);
+    }
+
+    public function toArray()
+    {
+        $res = collect([
+            [
+                collect([1, 2, 3]),
+                collect([4, 5, 6])
+            ],
+            collect([7, 8, 9])
+        ])->toArray();
+        dd($res);
+    }
+
+    public function toJson()
+    {
+        $res = collect(['product' => 'apple' ,'price' => '150'])->toJson(JSON_PRETTY_PRINT);
+        dd($res);
+    }
 
 }
 
