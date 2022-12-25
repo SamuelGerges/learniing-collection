@@ -583,10 +583,81 @@ class LearningController extends Controller
             ['product' => 'oranges', 'price' => 20, 'quantity' => 10, 'code' => 'A-20'],
             ['product' => 'bananas', 'price' => 50, 'quantity' => 17, 'code' => 'A-50'],
             ['product' => 'lemons', 'price' => 66, 'quantity' => 8, 'code' => 'A40'],
-        ])->sortBy(function ($item){
-            return str_replace('-','',$item['code']);
+        ])->sortBy(function ($item) {
+            return str_replace('-', '', $item['code']);
         });
 
+    }
+
+    public function groupBy()
+    {
+        $res = collect([
+            'item1' => ['product' => 'apples', 'price' => 100, 'quantity' => 5, 'code' => 'A30'],
+            'item2' => ['product' => 'oranges', 'price' => 20, 'quantity' => 10, 'code' => 'A-20'],
+            'item3' => ['product' => 'bananas', 'price' => 50, 'quantity' => 17, 'code' => 'A-50'],
+            'item4' => ['product' => 'lemons', 'price' => 66, 'quantity' => 8, 'code' => 'A40'],
+        ])->groupBy('product');
+        dd($res);
+
+    }
+
+    public function first()
+    {
+        $res = collect([
+            ['product' => 'apples', 'price' => 10, 'quantity' => 5, 'code' => 'A30'],
+            ['product' => 'oranges', 'price' => 20, 'quantity' => 10, 'code' => 'A-20'],
+            ['product' => 'bananas', 'price' => 50, 'quantity' => 17, 'code' => 'A-50'],
+            ['product' => 'lemons', 'price' => 66, 'quantity' => 8, 'code' => 'A40'],
+        ])->first(function ($item) {
+            return $item['price'] > 10;
+        });
+        dd($res);
+    }
+
+    public function last()
+    {
+        $res = collect([
+            ['product' => 'apples', 'price' => 100, 'quantity' => 5, 'code' => 'A30'],
+            ['product' => 'oranges', 'price' => 20, 'quantity' => 10, 'code' => 'A-20'],
+            ['product' => 'bananas', 'price' => 50, 'quantity' => 17, 'code' => 'A-50'],
+            ['product' => 'lemons', 'price' => 66, 'quantity' => 8, 'code' => 'A40'],
+        ])->last(function ($item) {
+            return $item['price'] < 66;
+        });
+        dd($res);
+    }
+
+    public function isEmpty()
+    {
+        $res = collect([
+            ['product' => 'apples', 'price' => 100, 'quantity' => 5, 'code' => 'A30'],
+            ['product' => 'oranges', 'price' => 20, 'quantity' => 10, 'code' => 'A-20'],
+            ['product' => 'bananas', 'price' => 50, 'quantity' => 17, 'code' => 'A-50'],
+            ['product' => 'lemons', 'price' => 66, 'quantity' => 8, 'code' => 'A40'],
+        ]);
+        if ($res->isEmpty())
+            dd('The collection is Empty');
+        else
+            dd('the collection existed data');
+    }
+
+    public function isNotEmpty()
+    {
+        $res = collect([
+            ['product' => 'apples', 'price' => 100, 'quantity' => 5, 'code' => 'A30'],
+            ['product' => 'oranges', 'price' => 20, 'quantity' => 10, 'code' => 'A-20'],
+            ['product' => 'bananas', 'price' => 50, 'quantity' => 17, 'code' => 'A-50'],
+            ['product' => 'lemons', 'price' => 66, 'quantity' => 8, 'code' => 'A40'],
+        ]);
+        if ($res->isNotEmpty())
+            dd('the collection existed data');
+        else
+            dd('The collection is Empty');
+    }
+
+    public function reverse()
+    {
+        $res = collect([1,2,3,4,5])->reverse()->values();
         dd($res);
     }
 

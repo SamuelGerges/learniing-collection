@@ -47,6 +47,12 @@ Route::controller(LearningController::class)->group(function () {
     Route::get('zip','zip')->name('zip');
     Route::get('sort','sort')->name('sort');
     Route::get('sortBy','sortBy')->name('sortBy');
+    Route::get('groupBy','groupBy')->name('groupBy');
+    Route::get('first','first')->name('first');
+    Route::get('last','last')->name('last');
+    Route::get('isEmpty','isEmpty')->name('isEmpty');
+    Route::get('isNotEmpty','isNotEmpty')->name('isNotEmpty');
+    Route::get('reverse','reverse')->name('reverse');
 });
 
 Auth::routes();
